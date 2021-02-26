@@ -29,10 +29,10 @@ function done (){
 }
 
 function workout_1(){		
-	exercise 1 "Burpee"
-	exercise 1 "Push Ups"
-	exercise 1 
-	exercise 1 "Dead Lift"
+	exercise 10 "Burpee"
+	exercise 10 "Push Ups"
+	exercise 10 
+	exercise 10 "Dead Lift"
 }
 
 function workout_2(){		
