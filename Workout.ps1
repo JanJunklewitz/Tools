@@ -29,17 +29,31 @@ function done (){
 }
 
 function workout_1(){		
-	exercise 10 "Burpee"
-	exercise 10 "Push Ups"
-	exercise 10 "XY"
-	exercise 10 "Dead Lift"
+	exercise 60 "jumping jacks"
+	exercise 60 "squats"
+	exercise 60 "lunges"
+	exercise 60 "leg raise"
+	exercise 60 "handstand"
+	exercise 60 "walking push ups"
+	exercise 60 "crunsh"
+	exercise 60 "burpee"
+	exercise 60 "superman"
+	exercise 60 "opposite leg and arm rise"
+	exercise 60 "plank"
 }
 
-function workout_2(){		
-	exercise 5 "Crunsh"
-	exercise 5 "Plank"
-	exercise 5 "Jumping Jacks"
-	exercise 5 "Rope skipping"
+function workout_2(){			
+	exercise 60 "jumping jacks"
+	exercise 60 "squats"
+	exercise 60 "lunges"
+	exercise 60 "leg raise"
+	exercise 60 "handstand"
+	exercise 60 "walking push ups"
+	exercise 60 "crunsh"
+	exercise 60 "burpee"
+	exercise 60 "superman"
+	exercise 60 "opposite leg and arm rise"
+	exercise 60 "plank"
 }
 
 workout_1
