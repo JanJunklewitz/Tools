@@ -1,3 +1,5 @@
+
+
 function voice_and_text_100msg($msg){
 	Write-Host "##### $msg ##############" -ForegroundColor blue
 	
@@ -6,18 +8,16 @@ function voice_and_text_100msg($msg){
 	$voice.speak($msg)
 }
 
-function exercise ($time = 60, $name = ""){	
+function exercise ($time, $name){	
 
-	
-	voice_and_text_100msg "Start exercise $name for $time seconds!"
+	voice_and_text_100msg "Start exercise $name for $time second(s)!"
 	
 	$time_100ms = $time*10
 	for($t_100ms = 0; $t_100ms -le $time_100ms; $t_100ms++)
 	{
 		$percent_done = $t_100ms / $time_100ms * 100
 		$seconds_remaining = ($time_100ms - $t_100ms)/10
-		# Write-Progress -Activity "Activity" -SecondsRemaining $seconds_remaining -Status "name";
-		Write-Progress -Activity "Activity" -PercentComplete $percent_done -Status "Remaining time $($seconds_remaining)s";
+		Write-Progress -Activity "$name" -PercentComplete $percent_done -Status "Remaining time $($seconds_remaining)s";
 		Sleep -Milliseconds  100;
 	}
 	[System.console]::beep(2000,500)
@@ -31,7 +31,7 @@ function done (){
 function workout_1(){		
 	exercise 10 "Burpee"
 	exercise 10 "Push Ups"
-	exercise 10 
+	exercise 10 "XY"
 	exercise 10 "Dead Lift"
 }
 
