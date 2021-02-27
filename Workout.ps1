@@ -1,6 +1,4 @@
-
-
-function voice_and_text_100msg($msg){
+function voice_and_text_msg($msg){
 	Write-Host "##### $msg ##############" -ForegroundColor blue
 	
 	$voice = New-Object -ComObject Sapi.spvoice
@@ -10,22 +8,21 @@ function voice_and_text_100msg($msg){
 
 function exercise ($time, $name){	
 
-	voice_and_text_100msg "Start exercise $name for $time second(s)!"
+	voice_and_text_msg "Start exercise '$name' for $time seconds!"
 	
-	$time_100ms = $time*10
-	for($t_100ms = 0; $t_100ms -le $time_100ms; $t_100ms++)
+	for($t = 0; $t -le $time; $t++)
 	{
-		$percent_done = $t_100ms / $time_100ms * 100
-		$seconds_remaining = ($time_100ms - $t_100ms)/10
+		$percent_done = $t / $time * 100
+		$seconds_remaining = $time - $t
 		Write-Progress -Activity "$name" -PercentComplete $percent_done -Status "Remaining time $($seconds_remaining)s";
-		Sleep -Milliseconds  100;
+		Sleep -Milliseconds  1000;
 	}
 	[System.console]::beep(2000,500)
 	echo "" # new line
 }
 
 function done (){
-	voice_and_text_100msg "You finished you Workout!!"
+	voice_and_text_msg "You finished you Workout!!"
 }
 
 function workout_1(){		
@@ -56,8 +53,16 @@ function workout_2(){
 	exercise 60 "plank"
 }
 
-workout_1
-workout_2
-done
+$t_start = Get-Date
 
+
+workout_1
+# workout_2
+
+$t_end = Get-Date
+$dt = $t_end - $t_start
+$dt.Seconds
+voice_and_text_msg "##### Workout lasted for $dt. ##############" -ForegroundColor green
+
+done
 pause
