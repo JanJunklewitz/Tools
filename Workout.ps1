@@ -39,6 +39,20 @@ function workout_1(){
 	exercise 60 "superman"
 }
 
+# focus on back and core
+function workout_2(){		
+	exercise 60 "jumping jacks"
+	exercise 60 "purpees"
+	exercise 60 "opposite leg and arm rise"
+	exercise 60 "walking push ups"
+	exercise 60 "sit-ups"
+	exercise 60 "reverse angles"
+	exercise 60 "handstand"
+	exercise 60 "ellbow plank"
+	exercise 60 "butterfly reverse"
+	exercise 60 "superman"
+}
+
 function exercise_collection(){			
 	exercise 60 "jumping jacks"
 	exercise 60 "squats"
@@ -47,7 +61,7 @@ function exercise_collection(){
 	exercise 60 "handstand"
 	exercise 60 "walking push ups"
 	exercise 60 "crunch"
-	exercise 60 "burpee"
+	exercise 60 "burpees"
 	exercise 60 "superman"
 	exercise 60 "opposite leg and arm rise"
 	exercise 60 "elbow plank"
@@ -57,13 +71,12 @@ function exercise_collection(){
 	exercise 60 "reverse crunches"
 	exercise 60 "brideges (glute bride)"
 	exercise 60 "bicycle crunches"
-	exercise 60 "bicycle crunches"
 }
 
 $t_start = Get-Date
 
 
-workout_1
+workout_2
 
 $t_end = Get-Date
 $dt = $t_end - $t_start
