@@ -21,10 +21,6 @@ function exercise ($time, $name){
 	echo "" # new line
 }
 
-function done (){
-	voice_and_text_msg "You finished you Workout!!"
-}
-
 # focus on chest and core
 function workout_1(){		
 	exercise 60 "high knees"
@@ -84,5 +80,4 @@ $seconds = $dt.Seconds
 $minutes = $dt.Minutes
 voice_and_text_msg "Congratulations you finished your Workout. It lasted for $minutes minutes and $seconds seconds." 
 
-done
 pause
