@@ -12,10 +12,28 @@ function exercise ($time, $name){
 	
 	for($t = 0; $t -le $time; $t++)
 	{
+		
 		$percent_done = $t / $time * 100
 		$seconds_remaining = $time - $t
 		Write-Progress -Activity "$name" -PercentComplete $percent_done -Status "Remaining time $($seconds_remaining)s";
 		Sleep -Milliseconds  1000;
+			
+		# abort exercise on 'q'
+		if ([Console]::KeyAvailable) {
+			$keypressed = [Console]::ReadKey("NoEcho").Key
+			# # clears the the buffer if more than one key was pressed during sleep
+			# while ([Console]::KeyAvailable) {
+		
+				# $null = [Console]::ReadKey("NoEcho")
+			# }
+			
+			if($keypressed -eq 'q'){
+				
+				Write-Host "Aborting exercise '$name'!" -ForegroundColor yellow
+				break;
+			}
+
+		}
 	}
 	[System.console]::beep(2000,500)
 	echo "" # new line
@@ -49,6 +67,20 @@ function workout_2(){
 	exercise 60 "superman"
 }
 
+# focus on legs and core
+function workout_3(){		
+	exercise 60 "rope skipping"
+	exercise 60 "squats"
+	exercise 60 "lunges"
+	exercise 60 "burpee"
+	exercise 60 "handstand"
+	exercise 60 "jumps"
+	exercise 60 "reverse angles"
+	exercise 60 "sit-ups"
+	exercise 60 "plank left"
+	exercise 60 "plank right"
+}
+
 function exercise_collection(){			
 	exercise 60 "jumping jacks"
 	exercise 60 "squats"
@@ -72,12 +104,10 @@ function exercise_collection(){
 $t_start = Get-Date
 
 
-workout_2
+workout_3
 
 $t_end = Get-Date
 $dt = $t_end - $t_start
 $seconds = $dt.Seconds
 $minutes = $dt.Minutes
 voice_and_text_msg "Congratulations you finished your Workout. It lasted for $minutes minutes and $seconds seconds." 
-
-pause
