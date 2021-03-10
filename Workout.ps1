@@ -6,8 +6,17 @@ function voice_and_text_msg($msg){
 	$voice.speak($msg)
 }
 
-function exercise ($time, $name){	
+function log($msg) {
+	Add-Content -Path .\Workout.log -Value $msg 
+}
 
+function log_date($msg) {
+	$msg = "$(Get-Date) $msg"
+	log $msg
+}
+
+function exercise ($time, $name){	
+	log "   Exercise '$name' for $time"
 	voice_and_text_msg "Start exercise '$name' for $time seconds!"
 	
 	for($t = 0; $t -le $time; $t++)
@@ -41,6 +50,9 @@ function exercise ($time, $name){
 
 # focus on chest and core
 function workout_1(){		
+	$msg = "workout 1 - focus on chest and core"
+	Write-Host $msg -ForegroundColor green
+	log_date $msg
 	exercise 60 "high knees"
 	exercise 60 "bridges"
 	exercise 60 "push ups"
@@ -53,8 +65,10 @@ function workout_1(){
 	exercise 60 "superman"
 }
 
-# focus on back and core
 function workout_2(){		
+	$msg = "workout 2 - focus on back and core"
+	Write-Host $msg -ForegroundColor green
+	log_date $msg
 	exercise 60 "jumping jacks"
 	exercise 60 "purpees"
 	exercise 60 "opposite leg and arm rise"
@@ -62,13 +76,16 @@ function workout_2(){
 	exercise 60 "sit-ups"
 	exercise 60 "reverse angles"
 	exercise 60 "handstand"
-	exercise 60 "ellbow plank"
+	exercise 60 "elbow plank"
 	exercise 60 "butterfly reverse"
 	exercise 60 "superman"
 }
 
-# focus on legs and core
-function workout_3(){		
+
+function workout_3(){	
+	$msg = "workout 3 - focus on leg and core"
+	Write-Host $msg -ForegroundColor green
+	log_date $msg
 	exercise 60 "rope skipping"
 	exercise 60 "squats"
 	exercise 60 "lunges"
@@ -81,33 +98,30 @@ function workout_3(){
 	exercise 60 "plank right"
 }
 
-function exercise_collection(){			
-	exercise 60 "jumping jacks"
-	exercise 60 "squats"
-	exercise 60 "lunges"
-	exercise 60 "leg raise"
-	exercise 60 "handstand"
-	exercise 60 "walking push ups"
-	exercise 60 "crunch"
-	exercise 60 "burpees"
-	exercise 60 "superman"
-	exercise 60 "opposite leg and arm rise"
-	exercise 60 "elbow plank"
-	exercise 60 "sit-ups"
-	exercise 60 "plank left"
-	exercise 60 "plank right"
-	exercise 60 "reverse crunches"
-	exercise 60 "brideges (glute bride)"
-	exercise 60 "bicycle crunches"
+function workout($workout_number) {
+	$count_workouts = 3;
+	switch ($workout_number % $count_workouts) {
+		0 { workout_1 }
+		1 { workout_2 }
+		2 { workout_3 }
+		default { Write-Host "invalid workout_number $workout_number" -ForegroundColor red }
+	}
 }
+	
+$n=0
+$path = ".\Workout.clixml";
+if(Test-Path -Path $path){
+	$n = Import-Clixml -path $path;
+	$n = $n + 1;
+}
+$n | Export-Clixml -path $path;
+
 
 $t_start = Get-Date
-
-
-workout_3
+workout $n
 
 $t_end = Get-Date
 $dt = $t_end - $t_start
 $seconds = $dt.Seconds
 $minutes = $dt.Minutes
-voice_and_text_msg "Congratulations you finished your Workout. It lasted for $minutes minutes and $seconds seconds." 
+# voice_and_text_msg "Congratulations you finished your Workout. It lasted for $minutes minutes and $seconds seconds." 
